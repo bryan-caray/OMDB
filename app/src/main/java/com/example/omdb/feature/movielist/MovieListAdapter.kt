@@ -38,9 +38,7 @@ class MovieListAdapter @Inject constructor() : ListAdapter<MovieDisplay, MovieLi
                 with(_binding) {
                     val context = root.context
                     txtMovieName.text = movie.name
-                    txtGenre.text = movie.genre
-
-                    txtDescription.text = movie.year
+                    txtYear.text = movie.year
                     imgThumbnail.load(movie.thumbnail) {
                         crossfade(true)
                         error(R.drawable.ic_baseline_broken_image_24)
