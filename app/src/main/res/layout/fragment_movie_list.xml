@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/bg_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="5dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_movie"
+        android:contentDescription="@string/app_name"
+        android:elevation="5dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="@id/bg_toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/bg_toolbar"
+        app:layout_constraintTop_toTopOf="@id/bg_toolbar"/>
+
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/search"
+        android:textColor="@color/boulder"
+        android:textColorHint="@color/light_gray"
+        android:gravity="start"
+        android:layout_marginStart="20dp"
+        android:maxLines="1"
+        android:elevation="5dp"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@id/bg_toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/bg_toolbar"
+        app:layout_constraintStart_toStartOf="@id/bg_toolbar"
+        app:layout_constraintEnd_toStartOf="@id/btnSearchCancel"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        android:drawablePadding="4dp"
+        android:drawableStart="@drawable/ic_round_search_24"
+        android:autofillHints="yes"
+        android:inputType="textAutoComplete" />
+
+    <ImageButton
+        android:id="@+id/btnSearchCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:elevation="5dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/cancel_search"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_round_close_24"
+        app:layout_constraintTop_toTopOf="@id/etSearch"
+        app:layout_constraintBottom_toBottomOf="@id/etSearch"
+        app:layout_constraintEnd_toStartOf="@id/img_logo"
+        app:layout_constraintStart_toEndOf="@id/etSearch"/>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMovieList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_toolbar"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_movie"/>
+
+    <include
+        android:id="@+id/empty"
+        layout="@layout/view_empty_movies"
+        android:visibility="visible"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_toolbar"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

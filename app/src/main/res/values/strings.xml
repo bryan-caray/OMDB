@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">OMDb</string>
+    <string name="movie_thumbnail">movie thumbnail</string>
+    <string name="search">Search movies</string>
+    <string name="back">back</string>
+    <string name="favorite">Favorite</string>
+    <string name="try_again">Try searching another movie</string>
+    <string name="empty_subtitle">Nothing Here!</string>
+    <string name="empty_title">Oh No!</string>
+    <string name="cancel_search">Cancel Search</string>
+</resources>
