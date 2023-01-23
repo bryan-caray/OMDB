@@ -1,4 +1,4 @@
-package com.appvno.domain
+package com.example.domain
 
 sealed class Result {
     data class Success<T>(val data: T) : Result()

@@ -1,6 +1,9 @@
 package com.example.data
 
-import com.appvno.domain.Constant
+import com.example.data.remote.model.Search
+import com.example.domain.Constant
+import com.example.domain.NetworkResult
+import com.example.domain.Result
 import com.example.domain.abstraction.Repository
 import com.example.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
@@ -31,5 +34,46 @@ class RepositoryImpl @Inject constructor(
         }
 
         emit(movieList)
+    }
+
+
+
+    /**
+     *  Implement Network Data Results
+     */
+    override fun searchMoviesNew(searchTitle: String): Flow<Result> = flow {
+        emit(Result.Loading)
+        when (val result = remoteDataSource.searchMoviesNew(searchTitle, Constant.API_KEY)) {
+            is NetworkResult.Failed -> {
+                emit(Result.Failed(errorCode = result.errorCode, errorMesg = result.errorMesg))
+            }
+            NetworkResult.Unknown -> {
+                emit(
+                    Result.Failed(
+                        errorCode = 0,
+                        errorMesg = "Unknown Error"
+                    )
+                )
+            }
+            is NetworkResult.Success<*> -> {
+                val movieList = arrayListOf<Movie>()
+                var list = result.data as ArrayList<Search>
+                for (item in list) {
+                    with(item) {
+                        movieList.add(
+                            Movie(
+                                imdbID = imdbID,
+                                poster = poster,
+                                title = title,
+                                type = type,
+                                year = year
+                            )
+                        )
+                    }
+                }
+                emit(Result.Success(data = movieList))
+            }
+        }
+
     }
 }

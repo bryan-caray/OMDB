@@ -1,4 +1,4 @@
-package com.appvno.domain
+package com.example.domain
 
 object Constant {
 

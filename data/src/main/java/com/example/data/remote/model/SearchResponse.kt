@@ -9,7 +9,10 @@ data class SearchResponse(
     @Json(name = "Response")
     val response: String,
     @Json(name = "Search")
-    val search: List<Search>,
+    val search: List<Search>?,
     @Json(name = "totalResults")
-    val totalResults: String
+    val totalResults: String?="",
+    @Json(name = "Error")
+    val errorMessage: String? = ""
+
 )
